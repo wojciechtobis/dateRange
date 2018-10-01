@@ -1,8 +1,5 @@
+using dateRange.Autofac;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace dateRange
 {
@@ -10,8 +7,12 @@ namespace dateRange
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.ReadKey();
+            var container = ContainerConfig.Configure();
+            using (var scope = container.BeginLifetimeScope())
+            {
+
+            }
+                Console.ReadKey();
         }
     }
 }
