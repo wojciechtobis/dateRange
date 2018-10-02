@@ -13,8 +13,21 @@ namespace dateRange.Validation.Validations
         {
         }
 
-        public override bool Requirement => throw new NotImplementedException();
+        public override bool Requirement
+        {
+            get
+            {
+                DateTime date;
+                return DateTime.TryParse(Context, out date);
+            }
+        }
 
-        protected override string ValidationMessage => throw new NotImplementedException();
+        protected override string ValidationMessage
+        {
+            get
+            {
+                return string.Format("Cannot parse date: {0}", Context);
+            }
+        }
     }
 }

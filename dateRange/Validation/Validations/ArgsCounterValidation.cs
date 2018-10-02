@@ -6,8 +6,20 @@
         {
         }
 
-        public override bool Requirement => throw new System.NotImplementedException();
+        public override bool Requirement
+        {
+            get
+            {
+                return Context.Length == 2;
+            }
+        }
 
-        protected override string ValidationMessage => throw new System.NotImplementedException();
+        protected override string ValidationMessage
+        {
+            get
+            {
+                return string.Format("Received {0} parameters, should be 2", Context.Length);
+            }
+        }
     }
 }
