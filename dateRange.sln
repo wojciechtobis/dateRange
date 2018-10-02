@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dateRange", "dateRange\dateRange.csproj", "{87CF2672-2EAF-49F3-B8E3-438130B49DBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dateRangeTests", "dateRangeTests\dateRangeTests.csproj", "{3BD04D56-BA56-4E8D-9644-2E7A7EDD5E68}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{87CF2672-2EAF-49F3-B8E3-438130B49DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{87CF2672-2EAF-49F3-B8E3-438130B49DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{87CF2672-2EAF-49F3-B8E3-438130B49DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BD04D56-BA56-4E8D-9644-2E7A7EDD5E68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BD04D56-BA56-4E8D-9644-2E7A7EDD5E68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BD04D56-BA56-4E8D-9644-2E7A7EDD5E68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BD04D56-BA56-4E8D-9644-2E7A7EDD5E68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
