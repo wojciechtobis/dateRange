@@ -8,8 +8,13 @@ namespace dateRange.Utils
 {
     public class DateParserUtil : IDateParserUtil
     {
-        public DateParserUtil()
-        {            
+        private IValidationBase Validator { get; set; }
+
+        private ICustomILogger _customLogger;
+
+        public DateParserUtil(ICustomILogger customLogger)
+        {
+            _customLogger = customLogger;
         }
 
         /// <summary>
@@ -23,7 +28,15 @@ namespace dateRange.Utils
         /// </returns>
         public DateTime? ParseDate(string dateString)
         {
-            throw new NotImplementedException();
+            Validator = new DateParseValidation(dateString);
+
+            if (!Validator.IsValid)
+            {
+                _customLogger.Error(Validator.Message);
+                return null;
+            }
+
+            return DateTime.Parse(dateString);
         }
     }
 }
