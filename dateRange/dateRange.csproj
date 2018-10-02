@@ -61,6 +61,9 @@
     <Compile Include="Validation\Interfaces\IValidationBase.cs" />
     <Compile Include="Validation\ValidationBase.cs" />
     <Compile Include="Validation\ValidationException.cs" />
+    <Compile Include="Validation\Validations\ArgsCounterValidation.cs" />
+    <Compile Include="Validation\Validations\DateParseValidation.cs" />
+    <Compile Include="Validation\Validations\DatesOrderValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -72,8 +75,6 @@
     </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Validation\Validations\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
