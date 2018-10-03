@@ -39,6 +39,8 @@ namespace dateRange.Utils.Tests
         [TestMethod()]
         public void CheckDateSeparatorForUSCulture()
         {
+            CultureInfo currentCultureInfo = Thread.CurrentThread.CurrentCulture;
+
             CultureInfo newCultureInfo = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = newCultureInfo;
 
@@ -46,6 +48,8 @@ namespace dateRange.Utils.Tests
 
             string expected = newCultureInfo.DateTimeFormat.DateSeparator;
             string result = cultureUtil.DateSeparator;
+
+            Thread.CurrentThread.CurrentCulture = currentCultureInfo;
 
             Assert.AreEqual(expected, result);
         }
@@ -53,6 +57,8 @@ namespace dateRange.Utils.Tests
         [TestMethod()]
         public void CheckShortDatePatternForUSCulture()
         {
+            CultureInfo currentCultureInfo = Thread.CurrentThread.CurrentCulture;
+
             CultureInfo newCultureInfo = new CultureInfo("en-US");
             Thread.CurrentThread.CurrentCulture = newCultureInfo;
 
@@ -61,12 +67,16 @@ namespace dateRange.Utils.Tests
             string expected = newCultureInfo.DateTimeFormat.ShortDatePattern;
             string result = cultureUtil.ShortDatePattern;
 
+            Thread.CurrentThread.CurrentCulture = currentCultureInfo;
+
             Assert.AreEqual(expected, result);
         }
 
         [TestMethod()]
         public void CheckDateSeparatorForJPCulture()
         {
+            CultureInfo currentCultureInfo = Thread.CurrentThread.CurrentCulture;
+
             CultureInfo newCultureInfo = new CultureInfo("ja-JP");
             Thread.CurrentThread.CurrentCulture = newCultureInfo;
 
@@ -75,12 +85,16 @@ namespace dateRange.Utils.Tests
             string expected = newCultureInfo.DateTimeFormat.DateSeparator;
             string result = cultureUtil.DateSeparator;
 
+            Thread.CurrentThread.CurrentCulture = currentCultureInfo;
+
             Assert.AreEqual(expected, result);
         }
 
         [TestMethod()]
         public void CheckShortDatePatternForJPCulture()
         {
+            CultureInfo currentCultureInfo = Thread.CurrentThread.CurrentCulture;
+
             CultureInfo newCultureInfo = new CultureInfo("ja-JP");
             Thread.CurrentThread.CurrentCulture = newCultureInfo;
 
@@ -88,6 +102,8 @@ namespace dateRange.Utils.Tests
 
             string expected = newCultureInfo.DateTimeFormat.ShortDatePattern;
             string result = cultureUtil.ShortDatePattern;
+
+            Thread.CurrentThread.CurrentCulture = currentCultureInfo;
 
             Assert.AreEqual(expected, result);
         }
