@@ -62,6 +62,8 @@
     <Compile Include="Utils\DateParserUtil.cs" />
     <Compile Include="Utils\Interfaces\ICultureUtil.cs" />
     <Compile Include="Utils\Interfaces\IDateParserUtil.cs" />
+    <Compile Include="Utils\Interfaces\IPatternsUtil.cs" />
+    <Compile Include="Utils\PatternsUtil.cs" />
     <Compile Include="Validation\Interfaces\IValidationBase.cs" />
     <Compile Include="Validation\ValidationBase.cs" />
     <Compile Include="Validation\ValidationException.cs" />

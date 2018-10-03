@@ -15,6 +15,7 @@ namespace dateRange.Autofac
             builder.RegisterType<DateParserUtil>().As<IDateParserUtil>();
             builder.RegisterType<CustomLogger>().As<ICustomILogger>();
             builder.RegisterType<CultureUtil>().As<ICultureUtil>();
+            builder.RegisterType<PatternsUtil>().As<IPatternsUtil>();
 
             return builder.Build();
         }
