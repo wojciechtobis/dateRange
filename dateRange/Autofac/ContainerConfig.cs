@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using dateRange.Interfaces;
 using dateRange.Logging;
 using dateRange.Logging.Interfaces;
 using dateRange.Utils;
@@ -16,6 +17,7 @@ namespace dateRange.Autofac
             builder.RegisterType<CustomLogger>().As<ICustomILogger>();
             builder.RegisterType<CultureUtil>().As<ICultureUtil>();
             builder.RegisterType<PatternsUtil>().As<IPatternsUtil>();
+            builder.RegisterType<DateRangeParser>().As<IDateRangeParser>();
 
             return builder.Build();
         }
