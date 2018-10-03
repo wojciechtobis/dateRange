@@ -16,6 +16,7 @@ namespace dateRangeTests
 
             builder.RegisterType<DateParserUtil>().As<IDateParserUtil>();
             builder.RegisterType<CustomLogger>().As<ICustomILogger>();
+            builder.RegisterType<CultureUtil>().As<ICultureUtil>();
 
             container = builder.Build();
         }

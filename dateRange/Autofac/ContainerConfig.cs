@@ -1,6 +1,8 @@
 ﻿using Autofac;
 using dateRange.Logging;
 using dateRange.Logging.Interfaces;
+using dateRange.Utils;
+using dateRange.Utils.Interfaces;
 
 namespace dateRange.Autofac
 {
@@ -10,7 +12,9 @@ namespace dateRange.Autofac
         {
             var builder = new ContainerBuilder();
 
+            builder.RegisterType<DateParserUtil>().As<IDateParserUtil>();
             builder.RegisterType<CustomLogger>().As<ICustomILogger>();
+            builder.RegisterType<CultureUtil>().As<ICultureUtil>();
 
             return builder.Build();
         }
