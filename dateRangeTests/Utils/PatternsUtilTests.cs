@@ -4,6 +4,7 @@ using dateRangeTests;
 using Moq;
 using dateRange.Utils.Interfaces;
 using Autofac;
+using dateRange.DTOs;
 
 namespace dateRange.Utils.Tests
 {
@@ -34,10 +35,10 @@ namespace dateRange.Utils.Tests
                 DateTime tomorrow = DateTime.Now.Date.AddDays(1).Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, tomorrow);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, tomorrow);
 
                 string expected = pas.DayDiff.StartPattern;
-                string result = patternsUtil.StartPattern;
+                string result = resultPatterns.StartPattern;
 
                 Assert.AreEqual(expected, result);
             }
@@ -57,10 +58,10 @@ namespace dateRange.Utils.Tests
                 DateTime tomorrow = DateTime.Now.Date.AddDays(1).Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, tomorrow);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, tomorrow);
 
                 string expected = pas.DayDiff.EndPattern;
-                string result = patternsUtil.EndPattern;
+                string result = resultPatterns.EndPattern;
 
                 Assert.AreEqual(expected, result);
             }
@@ -80,10 +81,10 @@ namespace dateRange.Utils.Tests
                 DateTime tomorrow = DateTime.Now.Date.AddMonths(1).Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, tomorrow);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, tomorrow);
 
                 string expected = pas.MonthDiff.StartPattern;
-                string result = patternsUtil.StartPattern;
+                string result = resultPatterns.StartPattern;
 
                 Assert.AreEqual(expected, result);
             }
@@ -103,10 +104,10 @@ namespace dateRange.Utils.Tests
                 DateTime tomorrow = DateTime.Now.Date.AddMonths(1).Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, tomorrow);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, tomorrow);
 
                 string expected = pas.MonthDiff.EndPattern;
-                string result = patternsUtil.EndPattern;
+                string result = resultPatterns.EndPattern;
 
                 Assert.AreEqual(expected, result);
             }
@@ -126,10 +127,10 @@ namespace dateRange.Utils.Tests
                 DateTime tomorrow = DateTime.Now.Date.AddYears(1).Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, tomorrow);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, tomorrow);
 
                 string expected = pas.YearDiff.StartPattern;
-                string result = patternsUtil.StartPattern;
+                string result = resultPatterns.StartPattern;
 
                 Assert.AreEqual(expected, result);
             }
@@ -149,10 +150,10 @@ namespace dateRange.Utils.Tests
                 DateTime tomorrow = DateTime.Now.Date.AddYears(1).Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, tomorrow);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, tomorrow);
 
                 string expected = pas.YearDiff.EndPattern;
-                string result = patternsUtil.EndPattern;
+                string result = resultPatterns.EndPattern;
 
                 Assert.AreEqual(expected, result);
             }
@@ -171,10 +172,10 @@ namespace dateRange.Utils.Tests
                 DateTime today = DateTime.Now.Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, today);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, today);
 
                 string expected = pas.ShortDatePattern;
-                string result = patternsUtil.StartPattern;
+                string result = resultPatterns.StartPattern;
 
                 Assert.AreEqual(expected, result);
             }
@@ -193,10 +194,10 @@ namespace dateRange.Utils.Tests
                 DateTime today = DateTime.Now.Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, today);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, today);
 
                 string expected = pas.ShortDatePattern;
-                string result = patternsUtil.EndPattern;
+                string result = resultPatterns.EndPattern;
 
                 Assert.AreEqual(expected, result);
             }
@@ -217,12 +218,12 @@ namespace dateRange.Utils.Tests
                 DateTime tomorrow = DateTime.Now.Date.AddDays(1).Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, tomorrow);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, tomorrow);
 
                 string expectedStart = pas.DayDiff.StartPattern.Replace('.', newSeparator);
-                string resultStart = patternsUtil.StartPattern;
+                string resultStart = resultPatterns.StartPattern;
                 string expectedEnd = pas.DayDiff.EndPattern.Replace('.', newSeparator);
-                string resultEnd = patternsUtil.EndPattern;
+                string resultEnd = resultPatterns.EndPattern;
 
                 Assert.AreEqual(expectedStart, resultStart);
                 Assert.AreEqual(expectedEnd, resultEnd);
@@ -244,12 +245,12 @@ namespace dateRange.Utils.Tests
                 DateTime tomorrow = DateTime.Now.Date.AddMonths(1).Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, tomorrow);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, tomorrow);
 
                 string expectedStart = pas.MonthDiff.StartPattern.Replace('.', newSeparator);
-                string resultStart = patternsUtil.StartPattern;
+                string resultStart = resultPatterns.StartPattern;
                 string expectedEnd = pas.MonthDiff.EndPattern.Replace('.', newSeparator);
-                string resultEnd = patternsUtil.EndPattern;
+                string resultEnd = resultPatterns.EndPattern;
 
                 Assert.AreEqual(expectedStart, resultStart);
                 Assert.AreEqual(expectedEnd, resultEnd);
@@ -271,12 +272,12 @@ namespace dateRange.Utils.Tests
                 DateTime tomorrow = DateTime.Now.Date.AddYears(1).Date;
 
                 IPatternsUtil patternsUtil = container.Resolve<IPatternsUtil>(new TypedParameter(typeof(ICultureUtil), cultureUtilMock.Object));
-                patternsUtil.SetPatterns(today, tomorrow);
+                PatternsDTO resultPatterns = patternsUtil.GetPatterns(today, tomorrow);
 
                 string expectedStart = pas.YearDiff.StartPattern.Replace('.', newSeparator);
-                string resultStart = patternsUtil.StartPattern;
+                string resultStart = resultPatterns.StartPattern;
                 string expectedEnd = pas.YearDiff.EndPattern.Replace('.', newSeparator);
-                string resultEnd = patternsUtil.EndPattern;
+                string resultEnd = resultPatterns.EndPattern;
 
                 Assert.AreEqual(expectedStart, resultStart);
                 Assert.AreEqual(expectedEnd, resultEnd);

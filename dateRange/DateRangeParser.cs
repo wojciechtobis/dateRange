@@ -1,4 +1,5 @@
 ﻿using System;
+using dateRange.DTOs;
 using dateRange.Interfaces;
 using dateRange.Logging.Interfaces;
 using dateRange.Utils.Interfaces;
@@ -50,9 +51,9 @@ namespace dateRange
                 return GetRangeForSameDates(startDate);
             }
 
-            _patternsUtil.SetPatterns(startDate, endDate);
+            PatternsDTO patterns = _patternsUtil.GetPatterns(startDate, endDate);
 
-            return GetRangeWithSeparator(startDate, endDate, _patternsUtil.StartPattern, _patternsUtil.EndPattern);
+            return GetRangeWithSeparator(startDate, endDate, patterns.StartPattern, patterns.EndPattern);
         }
 
         /// <summary>

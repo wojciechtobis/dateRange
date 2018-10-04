@@ -1,20 +1,13 @@
 ﻿using System;
+using dateRange.DTOs;
 using dateRange.Utils.Interfaces;
 
 namespace dateRange.Utils
 {
     public class PatternsUtil : IPatternsUtil
     {
-        /// <summary>
-        /// Pattern for start date in date range
-        /// </summary>
-        public string StartPattern { get; private set; }
-
-        /// <summary>
-        /// Pattern for end date in date range
-        /// </summary>
-        public string EndPattern { get; private set; }
-
+        private string StartPattern { get; set; }
+        private string EndPattern { get; set; }
         private DateTime StartDate { get; set; }
         private DateTime EndDate { get; set; }
         private string ShortDatePattern { get; set; }
@@ -36,14 +29,17 @@ namespace dateRange.Utils
         /// <param name="endDate">
         /// Range's end date
         /// </param>
-        public void SetPatterns(DateTime startDate, DateTime endDate)
+        /// <returns>
+        /// PatternsDTO which contains patterns for start and end dates in range
+        /// </returns>
+        public PatternsDTO GetPatterns(DateTime startDate, DateTime endDate)
         {
             StartPattern = _cultureUtil.ShortDatePattern;
             EndPattern = _cultureUtil.ShortDatePattern;
 
             if (startDate.Equals(endDate))
             {
-                return;
+                return new PatternsDTO(StartPattern, EndPattern);
             }
 
             ShortDatePattern = _cultureUtil.ShortDatePattern;
@@ -53,23 +49,21 @@ namespace dateRange.Utils
 
             if (StartDate.Year < EndDate.Year)
             {
-                return;
+                return new PatternsDTO(StartPattern, EndPattern);
             }
 
             if (StartDate.Month < EndDate.Month)
             {
-                SetPatternsForDifferentMonths();
-                return;
+                return GetPatternsForDifferentMonths();                
             }
 
-            SetPatternsForDifferentDays();
-            return;
+            return GetPatternsForDifferentDays();
         }
 
         /// <summary>
         /// Set patterns when months are different
         /// </summary>
-        private void SetPatternsForDifferentMonths()
+        private PatternsDTO GetPatternsForDifferentMonths()
         {
             string newPattern = RemovePartFromDatePattern(ShortDatePattern, "y");
 
@@ -82,12 +76,14 @@ namespace dateRange.Utils
             {
                 StartPattern = newPattern;
             }
+
+            return new PatternsDTO(StartPattern, EndPattern);
         }
 
         /// <summary>
         /// Set patterns when days are different
         /// </summary>
-        private void SetPatternsForDifferentDays()
+        private PatternsDTO GetPatternsForDifferentDays()
         {
             string newPattern = RemovePartFromDatePattern(ShortDatePattern, "y");
 
@@ -112,6 +108,8 @@ namespace dateRange.Utils
             {
                 EndPattern = newPattern;
             }
+
+            return new PatternsDTO(StartPattern, EndPattern);
         }
 
         /// <summary>

@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Autofac\ContainerConfig.cs" />
     <Compile Include="DateRangeParser.cs" />
+    <Compile Include="DTOs\PatternsDTO.cs" />
     <Compile Include="Interfaces\IDateRangeParser.cs" />
     <Compile Include="Logging\CustomLogger.cs" />
     <Compile Include="Logging\Interfaces\ICustomILogger.cs" />

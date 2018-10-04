@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using dateRange.DTOs;
 using dateRange.Interfaces;
 using dateRange.Utils.Interfaces;
 using dateRangeTests;
@@ -60,8 +61,7 @@ namespace dateRange.Tests
 
             foreach (DatePatternAndRange par in patternsAndRanges)
             {
-                patternsUtilMock.Setup(m => m.StartPattern).Returns(par.StartPattern);
-                patternsUtilMock.Setup(m => m.EndPattern).Returns(par.EndPattern);
+                patternsUtilMock.Setup(m => m.GetPatterns(startDate, endDate)).Returns(par.Patterns);
 
                 IDateRangeParser dateRangeParser = container.Resolve<IDateRangeParser>(new TypedParameter(typeof(IPatternsUtil), patternsUtilMock.Object));
 
@@ -93,8 +93,7 @@ namespace dateRange.Tests
 
             foreach (DatePatternAndRange par in patternsAndRanges)
             {
-                patternsUtilMock.Setup(m => m.StartPattern).Returns(par.StartPattern);
-                patternsUtilMock.Setup(m => m.EndPattern).Returns(par.EndPattern);
+                patternsUtilMock.Setup(m => m.GetPatterns(startDate, endDate)).Returns(par.Patterns);
 
                 IDateRangeParser dateRangeParser = container.Resolve<IDateRangeParser>(new TypedParameter(typeof(IPatternsUtil), patternsUtilMock.Object));
 
@@ -126,8 +125,7 @@ namespace dateRange.Tests
 
             foreach (DatePatternAndRange par in patternsAndRanges)
             {
-                patternsUtilMock.Setup(m => m.StartPattern).Returns(par.StartPattern);
-                patternsUtilMock.Setup(m => m.EndPattern).Returns(par.EndPattern);
+                patternsUtilMock.Setup(m => m.GetPatterns(startDate, endDate)).Returns(par.Patterns);
 
                 IDateRangeParser dateRangeParser = container.Resolve<IDateRangeParser>(new TypedParameter(typeof(IPatternsUtil), patternsUtilMock.Object));
 
@@ -141,14 +139,12 @@ namespace dateRange.Tests
 
     class DatePatternAndRange
     {
-        public string StartPattern { get; set; }
-        public string EndPattern { get; set; }
+        public PatternsDTO Patterns { get; set; }
         public string Range { get; set; }
 
         public DatePatternAndRange(string startPattern, string endPattern, string range)
         {
-            StartPattern = startPattern;
-            EndPattern = endPattern;
+            Patterns = new PatternsDTO(startPattern, endPattern);
             Range = range;
         }
     }
