@@ -26,15 +26,10 @@ namespace dateRange.Utils
         /// <returns>
         /// If input can be parsed method returns DateTime, otherwise returns null
         /// </returns>
-        public DateTime? ParseDate(string dateString)
+        public DateTime ParseDate(string dateString)
         {
             Validator = new DateParseValidation(dateString);
-
-            if (!Validator.IsValid)
-            {
-                _customLogger.Error(Validator.Message);
-                return null;
-            }
+            Validator.Validate();           
 
             return DateTime.Parse(dateString);
         }

@@ -3,6 +3,7 @@ using dateRange.Autofac;
 using dateRange.Interfaces;
 using dateRange.Logging.Interfaces;
 using dateRange.Utils.Interfaces;
+using dateRange.Validation;
 using dateRange.Validation.Validations;
 using System;
 
@@ -22,28 +23,21 @@ namespace dateRange
                 try
                 {
                     ArgsCounterValidation argsCounterValidator = new ArgsCounterValidation(args);
+                    argsCounterValidator.Validate();
 
-                    if (argsCounterValidator.IsValid)
-                    {
-                        IDateParserUtil dateParserUtil = scope.Resolve<IDateParserUtil>();
+                    IDateParserUtil dateParserUtil = scope.Resolve<IDateParserUtil>();
 
-                        DateTime? startDate = dateParserUtil.ParseDate(args[0]);
-                        DateTime? endDate = dateParserUtil.ParseDate(args[1]);
+                    DateTime startDate = dateParserUtil.ParseDate(args[0]);
+                    DateTime endDate = dateParserUtil.ParseDate(args[1]);
 
-                        if (startDate != null && endDate != null)
-                        {
-                            IDateRangeParser dateRangeParser = scope.Resolve<IDateRangeParser>();
-                            string range = dateRangeParser.CalculateRange(startDate.Value, endDate.Value);
-                            if (range != null)
-                            {
-                                logger.Info(range);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        logger.Error(argsCounterValidator.Message);
-                    }
+                    IDateRangeParser dateRangeParser = scope.Resolve<IDateRangeParser>();
+                    string range = dateRangeParser.CalculateRange(startDate, endDate);
+                    logger.Info(range);
+                    
+                }
+                catch(ValidationException ve)
+                {
+                    logger.Error(ve.Message);
                 }
                 catch(Exception e)
                 {

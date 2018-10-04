@@ -39,12 +39,7 @@ namespace dateRange
         public string CalculateRange(DateTime startDate, DateTime endDate)
         {
             Validator = new DatesOrderValidation(new DateTime[] { startDate, endDate });
-
-            if (!Validator.IsValid)
-            {
-                _customILogger.Error(Validator.Message);
-                return null;
-            }
+            Validator.Validate();
 
             if (startDate.Equals(endDate))
             {

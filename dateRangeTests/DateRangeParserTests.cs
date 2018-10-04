@@ -2,6 +2,7 @@
 using dateRange.DTOs;
 using dateRange.Interfaces;
 using dateRange.Utils.Interfaces;
+using dateRange.Validation;
 using dateRangeTests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -14,16 +15,14 @@ namespace dateRange.Tests
     public class DateRangeParserTests : BaseTests
     {
         [TestMethod()]
-        public void ReturnNullWrongDatesOrder()
+        public void ThrowExceptionWrongDatesOrder()
         {
             DateTime startDate = DateTime.Parse("02.01.2016", new CultureInfo("pl-PL"));
             DateTime endDate = DateTime.Parse("01.01.2016", new CultureInfo("pl-PL"));
 
             IDateRangeParser dateRangeParser = container.Resolve<IDateRangeParser>();
 
-            string result = dateRangeParser.CalculateRange(startDate, endDate);
-
-            Assert.AreEqual(null, result);
+            Assert.ThrowsException<ValidationException>(() => dateRangeParser.CalculateRange(startDate, endDate));
         }
 
         [TestMethod()]
